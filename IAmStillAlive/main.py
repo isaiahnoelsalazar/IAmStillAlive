@@ -11,6 +11,10 @@ delta_time = 0.1
 async def main():
     global delta_time
     player = Player(screen)
+    player.set_spawn(
+        x = (screen.get_width() // 2) - (player.width // 2),
+        y = (screen.get_height() // 2) - (player.height // 2)
+    )
     running = True
     while running:
         screen.fill((255, 255, 255))

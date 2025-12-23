@@ -11,7 +11,14 @@ class Player(Entity):
         self.down = False
         self.left = False
         self.right = False
-        self.speed = 2
+        self.width = self.image.get_width()
+        self.height = self.image.get_height()
+        self.set_spawn()
+
+    def set_spawn(self, x = 0, y = 0, speed = 2):
+        self.x = x
+        self.y = y
+        self.speed = speed
 
     def update(self, delta_time):
         if self.up:
