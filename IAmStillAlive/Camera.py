@@ -16,4 +16,6 @@ class Camera:
         self.delta_time = delta_time
         self.x = self.target.x - (self.screen.get_width() // 2) + (self.target.width // 2)
         self.y = self.target.y - (self.screen.get_height() // 2) + (self.target.height // 2)
+
+    def display(self):
         self.screen.blit(pygame.Surface((0, 0)), (self.x, self.y))

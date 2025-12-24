@@ -29,4 +29,6 @@ class Player(Entity):
             self.x -= (60 * self.speed) * self.camera.delta_time
         if self.right:
             self.x += (60 * self.speed) * self.camera.delta_time
+
+    def display(self):
         self.camera.screen.blit(self.image, (self.x - self.camera.x, self.y - self.camera.y))

@@ -17,7 +17,7 @@ class Tile:
             self.height = self.image.get_height()
         self.color = pygame.color.Color(color)
 
-    def update(self):
+    def display(self):
         if self.image is not None:
             self.camera.screen.blit(self.image, (self.x - self.camera.x, self.y - self.camera.y))
         else:

@@ -13,6 +13,9 @@ camera = Camera(screen)
 
 async def main():
     global delta_time
+
+    ''' -------- INITIALIZATION -------- '''
+
     player = Player(camera)
     tile = Tile(
         camera = camera,
@@ -23,8 +26,14 @@ async def main():
     )
     camera.set_target(player)
     running = True
+
+    ''' -------- MAIN LOOP -------- '''
+
     while running:
         screen.fill((255, 255, 255))
+
+        ''' -------- EVENTS -------- '''
+
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_w:
@@ -46,9 +55,17 @@ async def main():
                     player.right = False
             if event.type == pygame.QUIT:
                 running = False
-        tile.update()
+
+        ''' -------- UPDATE -------- '''
+
         player.update()
         camera.update(delta_time)
+
+        ''' -------- DISPLAY -------- '''
+
+        tile.display()
+        player.display()
+        camera.display()
         pygame.display.flip()
         delta_time = clock.tick(60) / 1000
         delta_time = max(0.001, min(0.1, delta_time))
