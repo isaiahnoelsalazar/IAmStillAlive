@@ -1,6 +1,7 @@
 import asyncio
 import pygame
 from Player import Player
+from Tile import Tile
 
 pygame.init()
 screen = pygame.display.set_mode((800, 600))
@@ -14,6 +15,13 @@ async def main():
     player.set_spawn(
         x = (screen.get_width() // 2) - (player.width // 2),
         y = (screen.get_height() // 2) - (player.height // 2)
+    )
+    tile = Tile(
+        screen = screen,
+        x = 96,
+        y = 0,
+        width = 48,
+        height = 48
     )
     running = True
     while running:
@@ -39,6 +47,7 @@ async def main():
                     player.right = False
             if event.type == pygame.QUIT:
                 running = False
+        tile.update(delta_time)
         player.update(delta_time)
         pygame.display.flip()
         delta_time = clock.tick(60) / 1000
