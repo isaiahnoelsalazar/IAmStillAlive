@@ -2,10 +2,11 @@ import pygame
 
 
 class Tile:
-    def __init__(self, camera, x = 0, y = 0, image_path = None, width = 0, height = 0, color = (0, 0, 0)):
+    def __init__(self, camera, x = 0, y = 0, image_path = None, width = 0, height = 0, color = (0, 0, 0), is_solid = False):
         self.camera = camera
         self.x = x
         self.y = y
+        self.is_solid = is_solid
         try:
             self.image = pygame.image.load(image_path).convert_alpha()
         except:

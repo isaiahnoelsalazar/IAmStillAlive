@@ -1,5 +1,6 @@
 import pygame
 from Entity import Entity
+import Globals
 
 
 class Player(Entity):
@@ -7,10 +8,6 @@ class Player(Entity):
         super().__init__()
         self.camera = camera
         self.image = pygame.image.load("resources/player.png").convert_alpha()
-        self.up = False
-        self.down = False
-        self.left = False
-        self.right = False
         self.width = self.image.get_width()
         self.height = self.image.get_height()
         self.set_spawn()
@@ -21,13 +18,13 @@ class Player(Entity):
         self.speed = speed
 
     def update(self):
-        if self.up:
+        if Globals.up:
             self.y -= (60 * self.speed) * self.camera.delta_time
-        if self.down:
+        if Globals.down:
             self.y += (60 * self.speed) * self.camera.delta_time
-        if self.left:
+        if Globals.left:
             self.x -= (60 * self.speed) * self.camera.delta_time
-        if self.right:
+        if Globals.right:
             self.x += (60 * self.speed) * self.camera.delta_time
 
     def display(self):

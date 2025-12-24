@@ -1,8 +1,8 @@
 import asyncio
 import pygame
 from Camera import Camera
-from Player import Player
-from Tile import Tile
+import Globals
+from Scenario1 import Scenario1
 
 pygame.init()
 screen = pygame.display.set_mode((800, 600))
@@ -16,15 +16,7 @@ async def main():
 
     ''' -------- INITIALIZATION -------- '''
 
-    player = Player(camera)
-    tile = Tile(
-        camera = camera,
-        x = 96,
-        y = 0,
-        width = 48,
-        height = 48
-    )
-    camera.set_target(player)
+    scenario1 = Scenario1(camera)
     running = True
 
     ''' -------- MAIN LOOP -------- '''
@@ -37,34 +29,33 @@ async def main():
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_w:
-                    player.up = True
+                    Globals.up = True
                 if event.key == pygame.K_a:
-                    player.left = True
+                    Globals.left = True
                 if event.key == pygame.K_s:
-                    player.down = True
+                    Globals.down = True
                 if event.key == pygame.K_d:
-                    player.right = True
+                    Globals.right = True
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_w:
-                    player.up = False
+                    Globals.up = False
                 if event.key == pygame.K_a:
-                    player.left = False
+                    Globals.left = False
                 if event.key == pygame.K_s:
-                    player.down = False
+                    Globals.down = False
                 if event.key == pygame.K_d:
-                    player.right = False
+                    Globals.right = False
             if event.type == pygame.QUIT:
                 running = False
 
         ''' -------- UPDATE -------- '''
 
-        player.update()
+        scenario1.update()
         camera.update(delta_time)
 
         ''' -------- DISPLAY -------- '''
 
-        tile.display()
-        player.display()
+        scenario1.display()
         camera.display()
         pygame.display.flip()
         delta_time = clock.tick(60) / 1000
