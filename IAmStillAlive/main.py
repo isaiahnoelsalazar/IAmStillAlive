@@ -1,5 +1,6 @@
 import asyncio
 import pygame
+from Camera import Camera
 from Player import Player
 from Tile import Tile
 
@@ -7,22 +8,20 @@ pygame.init()
 screen = pygame.display.set_mode((800, 600))
 clock = pygame.time.Clock()
 delta_time = 0.1
+camera = Camera(screen)
 
 
 async def main():
     global delta_time
-    player = Player(screen)
-    player.set_spawn(
-        x = (screen.get_width() // 2) - (player.width // 2),
-        y = (screen.get_height() // 2) - (player.height // 2)
-    )
+    player = Player(camera)
     tile = Tile(
-        screen = screen,
+        camera = camera,
         x = 96,
         y = 0,
         width = 48,
         height = 48
     )
+    camera.set_target(player)
     running = True
     while running:
         screen.fill((255, 255, 255))
@@ -47,8 +46,9 @@ async def main():
                     player.right = False
             if event.type == pygame.QUIT:
                 running = False
-        tile.update(delta_time)
-        player.update(delta_time)
+        tile.update()
+        player.update()
+        camera.update(delta_time)
         pygame.display.flip()
         delta_time = clock.tick(60) / 1000
         delta_time = max(0.001, min(0.1, delta_time))

@@ -3,9 +3,9 @@ from Entity import Entity
 
 
 class Player(Entity):
-    def __init__(self, screen):
+    def __init__(self, camera):
         super().__init__()
-        self.screen = screen
+        self.camera = camera
         self.image = pygame.image.load("resources/player.png").convert_alpha()
         self.up = False
         self.down = False
@@ -20,13 +20,13 @@ class Player(Entity):
         self.y = y
         self.speed = speed
 
-    def update(self, delta_time):
+    def update(self):
         if self.up:
-            self.y -= (60 * self.speed) * delta_time
+            self.y -= (60 * self.speed) * self.camera.delta_time
         if self.down:
-            self.y += (60 * self.speed) * delta_time
+            self.y += (60 * self.speed) * self.camera.delta_time
         if self.left:
-            self.x -= (60 * self.speed) * delta_time
+            self.x -= (60 * self.speed) * self.camera.delta_time
         if self.right:
-            self.x += (60 * self.speed) * delta_time
-        self.screen.blit(self.image, (self.x, self.y))
+            self.x += (60 * self.speed) * self.camera.delta_time
+        self.camera.screen.blit(self.image, (self.x - self.camera.x, self.y - self.camera.y))
