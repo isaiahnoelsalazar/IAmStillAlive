@@ -29,13 +29,3 @@ class Scenario1(Scenario):
         player = Player(self.camera)
         self.entity_list.append(player)
         self.camera.set_target(player)
-
-    def update(self):
-        for entity in self.entity_list:
-            entity.update()
-
-    def display(self):
-        for tile in self.tile_list:
-            tile.display()
-        for entity in self.entity_list:
-            entity.display()
