@@ -11,8 +11,9 @@ def start(camera):
     with open(os.getcwd() + "/scenarios/scenario_list", "r") as sl:
         for s in sl.readlines():
             scenario = importlib.import_module(s.strip())
-            scenario.start(camera)
-            scenario_list.append(scenario)
+            class_object = getattr(scenario, s.strip())
+            class_instance = class_object(camera=camera)
+            scenario_list.append(class_instance)
 
 
 def update():

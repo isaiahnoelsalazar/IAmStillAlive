@@ -1,33 +1,41 @@
 from IAmStillAlive.Player import Player
+from IAmStillAlive.Scenario import Scenario
 from IAmStillAlive.Tile import Tile
 
-entity_list = []
-tile_list = []
 
-
-def start(camera):
-    player = Player(camera)
-    entity_list.append(player)
-    tile_list.append(
-        Tile(
-            camera=camera,
-            x=96,
-            y=0,
-            width=48,
-            height=48,
-            is_solid=True
+class Scenario1(Scenario):
+    def __init__(self, camera):
+        super().__init__(camera)
+        self.tile_list.append(
+            Tile(
+                camera=self.camera,
+                x=96,
+                y=0,
+                width=48,
+                height=48,
+                is_solid=True
+            )
         )
-    )
-    camera.set_target(player)
+        self.tile_list.append(
+            Tile(
+                camera=self.camera,
+                x=-96,
+                y=0,
+                width=48,
+                height=48,
+                is_solid=True
+            )
+        )
+        player = Player(self.camera)
+        self.entity_list.append(player)
+        self.camera.set_target(player)
 
+    def update(self):
+        for entity in self.entity_list:
+            entity.update()
 
-def update():
-    for entity in entity_list:
-        entity.update()
-
-
-def display():
-    for tile in tile_list:
-        tile.display()
-    for entity in entity_list:
-        entity.display()
+    def display(self):
+        for tile in self.tile_list:
+            tile.display()
+        for entity in self.entity_list:
+            entity.display()

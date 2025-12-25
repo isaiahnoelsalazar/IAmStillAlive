@@ -16,6 +16,7 @@ class Tile:
         if self.image is not None:
             self.width = self.image.get_width()
             self.height = self.image.get_height()
+        self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
         self.color = pygame.color.Color(color)
 
     def display(self):
