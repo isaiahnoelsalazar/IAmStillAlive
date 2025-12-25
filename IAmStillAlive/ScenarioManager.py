@@ -1,27 +1,23 @@
-from Scenario import Scenario
-from Player import Player
-from Tile import Tile
+import os
+import sys
+import importlib
 
-class ScenarioManager(Scenario):
-    def __init__(self, camera):
-        super().__init__(camera)
-        self.player = Player(camera)
-        self.tile_list.append(
-            Tile(
-                camera=camera,
-                x=96,
-                y=0,
-                width=48,
-                height=48,
-                is_solid=True
-            )
-        )
-        self.camera.set_target(self.player)
+scenario_list = []
+scenario_index = 0
 
-    def update(self):
-        super().update()
-        self.player.update()
 
-    def display(self):
-        super().display()
-        self.player.display()
+def start(camera):
+    sys.path.append(os.getcwd() + "/scenarios")
+    with open(os.getcwd() + "/scenarios/scenario_list", "r") as sl:
+        for s in sl.readlines():
+            scenario = importlib.import_module(s.strip())
+            scenario.start(camera)
+            scenario_list.append(scenario)
+
+
+def update():
+    scenario_list[scenario_index].update()
+
+
+def display():
+    scenario_list[scenario_index].display()

@@ -2,7 +2,7 @@ import asyncio
 import pygame
 from Camera import Camera
 import Globals
-from Scenario1 import Scenario1
+import ScenarioManager
 
 pygame.init()
 screen = pygame.display.set_mode((800, 600))
@@ -16,7 +16,7 @@ async def main():
 
     ''' -------- INITIALIZATION -------- '''
 
-    scenario1 = Scenario1(camera)
+    ScenarioManager.start(camera)
     running = True
 
     ''' -------- MAIN LOOP -------- '''
@@ -29,33 +29,33 @@ async def main():
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_w:
-                    Globals.up = True
+                    Globals.KEY_W = True
                 if event.key == pygame.K_a:
-                    Globals.left = True
+                    Globals.KEY_A = True
                 if event.key == pygame.K_s:
-                    Globals.down = True
+                    Globals.KEY_S = True
                 if event.key == pygame.K_d:
-                    Globals.right = True
+                    Globals.KEY_D = True
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_w:
-                    Globals.up = False
+                    Globals.KEY_W = False
                 if event.key == pygame.K_a:
-                    Globals.left = False
+                    Globals.KEY_A = False
                 if event.key == pygame.K_s:
-                    Globals.down = False
+                    Globals.KEY_S = False
                 if event.key == pygame.K_d:
-                    Globals.right = False
+                    Globals.KEY_D = False
             if event.type == pygame.QUIT:
                 running = False
 
         ''' -------- UPDATE -------- '''
 
-        scenario1.update()
+        ScenarioManager.update()
         camera.update(delta_time)
 
         ''' -------- DISPLAY -------- '''
 
-        scenario1.display()
+        ScenarioManager.display()
         camera.display()
         pygame.display.flip()
         delta_time = clock.tick(60) / 1000

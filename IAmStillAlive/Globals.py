@@ -1,4 +1,4 @@
-up = False
-down = False
-left = False
-right = False
+KEY_W = False
+KEY_A = False
+KEY_S = False
+KEY_D = False

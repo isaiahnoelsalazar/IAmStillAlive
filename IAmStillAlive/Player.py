@@ -7,6 +7,10 @@ class Player(Entity):
     def __init__(self, camera):
         super().__init__()
         self.camera = camera
+        self.up = False
+        self.down = False
+        self.left = False
+        self.right = False
         self.image = pygame.image.load("resources/player.png").convert_alpha()
         self.width = self.image.get_width()
         self.height = self.image.get_height()
@@ -18,13 +22,17 @@ class Player(Entity):
         self.speed = speed
 
     def update(self):
-        if Globals.up:
+        self.up = Globals.KEY_W
+        self.down = Globals.KEY_S
+        self.left = Globals.KEY_A
+        self.right = Globals.KEY_D
+        if self.up:
             self.y -= (60 * self.speed) * self.camera.delta_time
-        if Globals.down:
+        if self.down:
             self.y += (60 * self.speed) * self.camera.delta_time
-        if Globals.left:
+        if self.left:
             self.x -= (60 * self.speed) * self.camera.delta_time
-        if Globals.right:
+        if self.right:
             self.x += (60 * self.speed) * self.camera.delta_time
 
     def display(self):
