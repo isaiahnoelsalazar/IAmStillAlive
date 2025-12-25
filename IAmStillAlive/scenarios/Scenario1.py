@@ -1,3 +1,9 @@
+# from IAmStillAlive.Player import Player
+# from IAmStillAlive.Scenario import Scenario
+# from IAmStillAlive.Tile import Tile
+
+''' -------- FOR REBUILD -------- '''
+
 from Player import Player
 from Scenario import Scenario
 from Tile import Tile

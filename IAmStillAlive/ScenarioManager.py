@@ -1,15 +1,13 @@
-import importlib
-
 scenario_list = []
 scenario_index = 0
 
 
 def start(camera):
-    with open("scenario_list", "r") as sl:
+    with open("scenarios/scenario_list", "r") as sl:
         for s in sl.readlines():
-            scenario = importlib.import_module(s.strip())
-            class_object = getattr(scenario, s.strip())
-            class_instance = class_object(camera=camera)
+            exec(open("scenarios/" + s.strip() + ".py").read(), globals(), locals())
+            globals().update(locals())
+            class_instance = locals()[s.strip()](camera=camera)
             scenario_list.append(class_instance)
 
 
