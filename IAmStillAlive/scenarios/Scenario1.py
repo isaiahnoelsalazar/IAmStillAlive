@@ -1,13 +1,11 @@
-from IAmStillAlive.MapManager import MapManager
-from IAmStillAlive.Player import Player
-from IAmStillAlive.Scenario import Scenario
-from IAmStillAlive.Tile import Tile
+# from IAmStillAlive.Player import Player
+# from IAmStillAlive.Scenario import Scenario
 
 ''' -------- FOR REBUILD -------- '''
 
-# from Player import Player
-# from Scenario import Scenario
-# from Tile import Tile
+from Player import Player
+from Scenario import Scenario
+from Tile import Tile
 
 
 class Scenario1(Scenario):
