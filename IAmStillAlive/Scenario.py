@@ -1,7 +1,10 @@
+from MapManager import MapManager
+
+
 class Scenario:
     def __init__(self, camera):
         self.camera = camera
-        self.tile_list = []
+        self.map_manager = MapManager(camera)
         self.entity_list = []
 
     def update(self):
@@ -9,7 +12,6 @@ class Scenario:
             entity.update()
 
     def display(self):
-        for tile in self.tile_list:
-            tile.display()
+        self.map_manager.display()
         for entity in self.entity_list:
             entity.display()
