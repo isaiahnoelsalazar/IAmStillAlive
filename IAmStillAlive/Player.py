@@ -43,15 +43,15 @@ class Player(Entity):
                     self.up = False
                 if down_rect_movement.colliderect(tile.rect):
                     self.down = False
-        for object_item in ScenarioManager.scenario_list[ScenarioManager.scenario_index].map_manager.map_list[ScenarioManager.scenario_list[ScenarioManager.scenario_index].map_manager.map_index].object_list:
-            if object_item.is_solid:
-                if left_rect_movement.colliderect(object_item.rect):
+        for game_object in ScenarioManager.scenario_list[ScenarioManager.scenario_index].map_manager.map_list[ScenarioManager.scenario_list[ScenarioManager.scenario_index].map_manager.map_index].object_list:
+            if game_object.is_solid:
+                if left_rect_movement.colliderect(game_object.rect):
                     self.left = False
-                if right_rect_movement.colliderect(object_item.rect):
+                if right_rect_movement.colliderect(game_object.rect):
                     self.right = False
-                if up_rect_movement.colliderect(object_item.rect):
+                if up_rect_movement.colliderect(game_object.rect):
                     self.up = False
-                if down_rect_movement.colliderect(object_item.rect):
+                if down_rect_movement.colliderect(game_object.rect):
                     self.down = False
         if self.up:
             self.y -= movement

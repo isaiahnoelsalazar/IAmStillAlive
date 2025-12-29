@@ -1,7 +1,7 @@
 import pygame
 from Map import Map
 from Tile import Tile
-from Object import Object
+from GameObject import GameObject
 
 
 class MapManager:
@@ -43,16 +43,16 @@ class MapManager:
                     for b in range(len(objectmap_array[a].split(","))):
                         object_check = int(objectmap_array[a].split(",")[b]) - 1
                         if object_check >= 0:
-                            object_item = Object(
+                            game_object = GameObject(
                                 camera = camera,
                                 image_path = f"resources/{new_object_list[int(objectmap_array[a].split(",")[b]) - 1].replace(".", "")}.png"
                             )
                             if new_object_list[int(objectmap_array[a].split(",")[b]) - 1].endswith("."):
-                                object_item.is_solid = True
-                            object_item.x = int(b) * object_item.width
-                            object_item.y = int(a) * object_item.height
-                            object_item.rect = pygame.Rect(object_item.x, object_item.y, object_item.width, object_item.height)
-                            full_map_data.object_list.append(object_item)
+                                game_object.is_solid = True
+                            game_object.x = int(b) * game_object.width
+                            game_object.y = int(a) * game_object.height
+                            game_object.rect = pygame.Rect(game_object.x, game_object.y, game_object.width, game_object.height)
+                            full_map_data.object_list.append(game_object)
                 self.map_list.append(full_map_data)
 
     def load(self, index):
