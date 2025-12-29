@@ -1,19 +1,26 @@
 scenario_list = []
-scenario_index = 0
+current_scenario = None
 
 
-def start(camera):
+def start():
     with open("scenarios/scenario_list", "r") as sl:
         for s in sl.readlines():
-            exec(open("scenarios/" + s.strip() + ".py").read(), globals(), locals())
-            globals().update(locals())
-            class_instance = locals()[s.strip()](camera=camera)
-            scenario_list.append(class_instance)
+            scenario_list.append(s.strip())
+
+
+def load(camera, scenario_index = 0):
+    global current_scenario
+    exec(open("scenarios/" + scenario_list[scenario_index] + ".py").read(), globals(), locals())
+    globals().update(locals())
+    class_instance = locals()[scenario_list[scenario_index]](camera=camera)
+    current_scenario = class_instance
 
 
 def update():
-    scenario_list[scenario_index].update()
+    global current_scenario
+    current_scenario.update()
 
 
 def display():
-    scenario_list[scenario_index].display()
+    global current_scenario
+    current_scenario.display()

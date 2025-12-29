@@ -33,7 +33,7 @@ class Player(Entity):
         right_rect_movement = pygame.Rect(self.x + movement, self.y, self.width, self.height)
         up_rect_movement = pygame.Rect(self.x, self.y - movement, self.width, self.height)
         down_rect_movement = pygame.Rect(self.x, self.y + movement, self.width, self.height)
-        for tile in ScenarioManager.scenario_list[ScenarioManager.scenario_index].map_manager.map_list[ScenarioManager.scenario_list[ScenarioManager.scenario_index].map_manager.map_index].tile_list:
+        for tile in ScenarioManager.current_scenario.map_manager.map_list[ScenarioManager.current_scenario.map_manager.map_index].tile_list:
             if tile.is_solid:
                 if left_rect_movement.colliderect(tile.rect):
                     self.left = False
@@ -43,7 +43,7 @@ class Player(Entity):
                     self.up = False
                 if down_rect_movement.colliderect(tile.rect):
                     self.down = False
-        for game_object in ScenarioManager.scenario_list[ScenarioManager.scenario_index].map_manager.map_list[ScenarioManager.scenario_list[ScenarioManager.scenario_index].map_manager.map_index].object_list:
+        for game_object in ScenarioManager.current_scenario.map_manager.map_list[ScenarioManager.current_scenario.map_manager.map_index].object_list:
             if game_object.is_solid:
                 if left_rect_movement.colliderect(game_object.rect):
                     self.left = False

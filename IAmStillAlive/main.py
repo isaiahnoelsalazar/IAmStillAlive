@@ -16,7 +16,8 @@ async def main():
 
     ''' -------- INITIALIZATION -------- '''
 
-    ScenarioManager.start(camera)
+    ScenarioManager.start()
+    ScenarioManager.load(camera, 1)
     running = True
 
     ''' -------- MAIN LOOP -------- '''
@@ -37,6 +38,8 @@ async def main():
                 if event.key == pygame.K_d:
                     Globals.KEY_D = True
             if event.type == pygame.KEYUP:
+                if event.key == pygame.K_e:
+                    Globals.KEY_E = True
                 if event.key == pygame.K_w:
                     Globals.KEY_W = False
                 if event.key == pygame.K_a:
